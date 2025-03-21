@@ -1,0 +1,680 @@
+File and directory Management :
+
+1. ls - List files in a directory
+2. cd - Change directory
+3. pwd - Print working directory
+4. mkdir - Create a directory
+5. rmdir - Remove an empty directory
+6. rm - Remove files or directories
+   Command to remove a directory that contains files :
+   rm -r directory_name
+   rm -rf directory_name
+   -f (force) → Forces the deletion without asking for confirmation, even if files are write-protected.
+
+7. cp - Copy files and directories
+   cp - source.txt /path/to/destination
+   cp -r source_directory /path/to/destination/
+
+8. mv - Move or rename files
+   To rename a file :
+   mv old_name.txt new_name.txt
+   To rename a directory:
+   mv old_directory new_directory
+   Move a File :
+   mv file.txt /path/to/destination/
+   Move and rename a file :
+   mv file.txt /path/to/destination/new_name.txt
+   Move a Directory
+   mv my_directory /path/to/destination/
+   Rename and move a directory
+   mv old_directory /new/path/new_directory
+
+9. touch - Create an empty file
+10. find - Search for files in a directory hierarchy
+{
+  find [path] [options] [expression]
+  [path] → The directory where the search begins (e.g., /home/user/).
+  [options] → Conditions like name, size, type, etc.
+  [expression] → Actions to perform (e.g., delete, print).
+  
+  1. Find by Name
+  Find a file named example.txt in the current directory and subdirectories:
+  find . -name "example.txt"
+  Find a file case-insensitively (-iname):
+  find . -iname "example.txt"
+  
+  2. Find by Type
+  Find only directories named "backup":
+  find / -type d -name "backup"
+  Find only files named "log.txt":
+  find / -type f -name "log.txt"
+
+  3. Find by Size
+Find files larger than 100MB:
+find /home/user/ -type f -size +100M
+Find files smaller than 10KB:
+find /home/user/ -type f -size -10k
+
+4. Find by Last Modified Time
+Find files modified in the last 7 days:
+find /var/log/ -type f -mtime -7
+Find files not modified in the last 30 days:
+find /var/log/ -type f -mtime +30
+
+5. Find and Delete Files
+Delete all .log files in /tmp/:
+find /tmp/ -type f -name "*.log" -delete
+🚨 Warning: Use -delete carefully, as it permanently deletes files.
+
+6. Find and Execute a Command
+Find all .txt files and display details using ls:
+find . -type f -name "*.txt" -exec ls -l {} \;
+Find and remove all empty directories:
+find /path/to/search -type d -empty -exec rmdir {} \;
+
+ Advanced Example:
+Find all .sh (shell script) files modified in the last 3 days and list them:
+find /home/user/ -type f -name "*.sh" -mtime -3 -exec ls -lh {} \;
+}
+11. locate - Find files quickly
+12. updatedb - Update database for locate
+13. stat - Display detailed information about a file
+14. tree - Display directory structure in tree format
+15. basename - Extract filename from a path
+16. dirname - Extract directory name from a path
+17. du - Show disk usage of files and directories
+18. df - Show available disk space
+19. ln - Create symbolic or hard links
+20. realpath - Get absolute path of a file
+
+2. File Operations and Processing
+
+21. cat - Concatenate and display files
+22. tac - Reverse the order of lines in a file
+23. more - View file contents page by page
+24. less - View file contents page by page (with scrolling)
+25. head - Display the first lines of a file
+26. tail - Display the last lines of a file
+27. cut - Extract sections of lines from a file
+28. paste - Merge lines of files
+29. diff - Compare files line by line
+30. cmp - Compare two files byte by byte
+31. sort - Sort lines of a file
+32. uniq - Remove duplicate lines
+33. wc - Count lines, words, and characters in a file
+34. tee - Read from stdin and write to stdout and file
+35. awk - Text processing tool
+36. sed - Stream editor for modifying text
+37. tr - Translate or delete characters
+38. xargs - Build and execute command lines
+39. split - Split a file into pieces
+40. csplit - Split a file based on content
+
+3. User and Group Management
+
+41. whoami - Display current user
+42. who - Show logged-in users
+43. w - Show who is logged in and what they are doing
+44. id - Show user and group IDs
+45. groups - Show user groups
+46. useradd - Add a new user
+47. userdel - Remove a user
+48. usermod - Modify a user account
+49. passwd - Change user password
+50. chage - Manage password aging
+51. groupadd - Create a new group
+52. groupdel - Delete a group
+53. gpasswd - Administer group passwords
+54. su - Switch to another user
+55. sudo - Execute a command as another user
+56. whoami - Print effective user ID
+57. logname - Print user’s login name
+58. finger - Display user information
+59. last - Show login history
+60. chown - Change file owner
+61. chmod - Change file permissions
+62. chgrp - Change group ownership
+
+4. Process Management
+
+63. ps - Display active processes
+64. top - Show real-time process information
+65. htop - Interactive process viewer
+66. kill - Terminate a process
+67. killall - Kill processes by name
+68. pkill - Kill processes by pattern
+69. nice - Run a process with a different priority
+70. renice - Change process priority
+71. jobs - Show background jobs
+72. fg - Bring a background job to the foreground
+73. bg - Resume a job in the background
+74. nohup - Run a command immune to hangups
+75. disown - Remove a job from shell control
+76. time - Measure command execution time
+77. watch - Run a command periodically
+78. strace - Trace system calls
+79. lsof - List open files
+80. pgrep - Find process ID by name
+
+5. Networking
+
+81. ifconfig - Show network interfaces (deprecated, use ip)
+82. ip - Show/manipulate network interfaces
+83. ping - Check network connectivity
+84. netstat - Show network connections (deprecated, use ss)
+85. ss - Show socket statistics
+86. traceroute - Show the path packets take
+87. nslookup - Query DNS records
+88. dig - Perform DNS lookup
+89. host - Find information about a domain
+90. wget - Download files from the web
+91. curl - Transfer data from or to a server
+92. scp - Securely copy files between systems
+93. rsync - Efficient file synchronization
+94. nmap - Network scanning tool
+95. telnet - Connect to remote hosts
+96. ssh - Secure remote login
+97. sftp - Secure file transfer
+98. ftp - File Transfer Protocol client
+99. arp - Show/manipulate the ARP table
+100. route - Show/manipulate IP routing table
+
+6. Disk Management
+
+101. mount - Mount a filesystem
+102. umount - Unmount a filesystem
+103. fdisk - Partition management
+104. mkfs - Create a filesystem
+105. fsck - Check and repair filesystem
+106. tune2fs - Adjust tunable filesystem parameters
+107. e2fsck - Check ext2/ext3/ext4 filesystems
+108. blkid - Display information about block devices
+109. lsblk - List information about block devices
+110. df - Report disk space usage
+111. du - Report file space usage
+112. mount - Show mounted filesystems
+113. swapoff - Disable swap space
+114. swapon - Enable swap space
+115. free - Show memory usage
+
+7. System Monitoring
+
+116. uptime - Show system uptime
+117. uname - Display system information
+118. dmesg - Show system logs
+119. vmstat - Show system performance
+120. iostat - Display CPU and disk I/O stats
+121. free - Show memory usage
+122. mpstat - Show CPU usage
+123. sar - Collect and display system activity
+124. lscpu - Display CPU architecture info
+125. lsusb - List USB devices
+126. lspci - List PCI devices
+127. sensors - Display hardware sensor data
+128. dmidecode - Show system hardware details
+
+8. Package Management (Example for Ubuntu/Debian)
+
+129. apt update - Update package list
+130. apt upgrade - Upgrade installed packages
+131. apt install - Install a package
+132. apt remove - Remove a package
+133. dpkg - Manage Debian packages
+134. apt-cache search - Search for a package
+135. apt list --installed - List installed packages
+136. apt autoremove - Remove unused packages
+
+9. File Archiving and Compression
+
+137. tar - Create and extract tar archives
+138. gzip - Compress files using gzip
+139. gunzip - Decompress files compressed with gzip
+140. bzip2 - Compress files using bzip2
+141. bunzip2 - Decompress files compressed with bzip2
+142. xz - Compress files using xz
+143. unxz - Decompress xz compressed files
+144. zip - Create zip archives
+145. unzip - Extract files from a zip archive
+146. rar - Compress files using rar
+147. unrar - Extract rar archives
+148. 7z - Compress files using 7z
+149. p7zip - Extract 7z files
+150. tar -czf archive.tar.gz folder/ (Create tar.gz)
+151. tar -xzf archive.tar.gz (Extract tar.gz)
+152. tar -cjf archive.tar.bz2 folder/ (Create tar.bz2)
+153. tar -xjf archive.tar.bz2 (Extract tar.bz2)
+154. tar -caf archive.tar.xz folder/ (Create tar.xz)
+155. tar -xaf archive.tar.xz (Extract tar.xz)
+
+10. Text Processing
+
+156. grep - Search for patterns in text
+157. egrep - Extended grep
+158. fgrep - Fixed-string grep
+159. sed - Stream editor
+160. awk - Pattern scanning and processing
+161. cut - Extract sections of lines
+162. paste - Merge lines from multiple files
+163. sort - Sort lines
+164. uniq - Remove duplicate lines
+165. fmt - Format text
+166. nl - Number lines of a file
+167. fold - Wrap long lines
+168. rev - Reverse lines of a file
+169. tr - Translate or delete characters
+170. pr - Format text for printing
+171. wc - Count lines, words, and characters
+172. col - Filter reverse line feeds
+173. column - Format output in columns
+174. tee - Output to multiple files
+175. strings - Extract readable text from binaries
+
+11. Permissions & Ownership
+
+176. chmod - Change file permissions
+177. chown - Change file owner
+178. chgrp - Change group ownership
+179. umask - Set default permissions
+180. stat - Display file status
+181. lsattr - List file attributes
+182. chattr - Change file attributes
+183. getfacl - Get ACL permissions
+184. setfacl - Set ACL permissions
+185. sudo - Execute commands as root
+
+12. System Information
+
+186. uname -a - Show system details
+187. hostname - Show or set hostname
+188. uptime - Show system uptime
+189. whoami - Show current user
+190. who - Show logged-in users
+191. w - Show active users and processes
+192. id - Show user ID and groups
+193. last - Show login history
+194. history - Show command history
+195. dmesg - Show boot and kernel messages
+196. date - Show or set system date and time
+197. cal - Show a calendar
+198. df - Show disk usage
+199. du - Show file space usage
+200. free - Show memory usage
+
+13. User Management
+
+201. useradd - Create a new user
+202. passwd - Change user password
+203. userdel - Delete a user
+204. usermod - Modify a user account
+205. groupadd - Create a new group
+206. groupdel - Delete a group
+207. groups - Show user groups
+208. id - Show user ID
+209. whoami - Show current user
+210. su - Switch user
+211. sudo - Execute command as another user
+212. chage - Manage user password expiry
+213. lastlog - Show last login details
+214. visudo - Edit sudoers file
+215. who - Show logged-in users
+
+14. Process Management
+
+216. ps - Show running processes
+217. top - Show real-time processes
+218. htop - Interactive process viewer
+219. nice - Start a process with a priority
+220. renice - Change process priority
+221. kill - Terminate a process
+222. pkill - Kill process by name
+223. killall - Kill multiple processes
+224. jobs - Show background jobs
+225. fg - Resume a background job in the foreground
+226. bg - Resume a job in the background
+227. nohup - Run a command immune to hangups
+228. disown - Remove job from shell’s control
+229. pgrep - Find process by name
+230. lsof - List open files
+231. strace - Trace system calls
+232. time - Measure command execution time
+
+15. Networking
+
+233. ip a - Show network interfaces
+234. ifconfig - Show network interfaces (deprecated)
+235. ping - Test network connectivity
+236. netstat - Show network statistics (deprecated)
+237. ss - Show socket statistics
+238. traceroute - Trace network path
+239. nslookup - Query DNS servers
+240. dig - Perform a DNS lookup
+241. wget - Download files from the internet
+242. curl - Transfer data from/to a server
+243. ftp - File Transfer Protocol client
+244. sftp - Secure file transfer
+245. scp - Securely copy files between machines
+246. rsync - Synchronize files between machines
+247. nmap - Scan network for open ports
+248. arp - Show ARP table
+249. route - Show/manipulate IP routing table
+250. iwconfig - Configure wireless networks
+
+16. Logging & Monitoring
+
+251. journalctl - View system logs
+252. tail -f /var/log/syslog - Monitor system log
+253. tail -f /var/log/auth.log - Monitor authentication log
+254. tail -f /var/log/dmesg - Monitor kernel logs
+255. watch - Run command at intervals
+256. vmstat - Show system performance
+257. iostat - Show CPU & disk statistics
+258. mpstat - Show CPU statistics
+259. lsof - List open files
+260. uptime - Show system uptime
+261. free - Show memory usage
+
+17. Package Management (For Different Distributions)
+Debian/Ubuntu:
+
+262. apt update - Update package list
+263. apt upgrade - Upgrade all installed packages
+264. apt install package - Install a package
+265. apt remove package - Remove a package
+266. dpkg -i package.deb - Install .deb package
+267. apt list --installed - List installed packages
+268. apt-cache search package - Search for a package
+269. apt autoremove - Remove unused dependencies
+
+RedHat/CentOS:
+
+270. yum update - Update system packages
+271. yum install package - Install a package
+272. yum remove package - Remove a package
+273. rpm -ivh package.rpm - Install an RPM package
+274. yum list installed - List installed packages
+275. yum clean all - Clear package cache
+
+18. Disk & Storage Management
+
+276. lsblk - List information about block devices
+277. blkid - Show filesystem UUIDs
+278. fdisk - Partition a disk
+279. parted - Advanced partitioning tool
+280. mkfs.ext4 /dev/sdb1 - Format a partition
+281. fsck - Check and repair a filesystem
+282. tune2fs - Modify filesystem parameters
+283. mount - Mount a filesystem
+284. umount - Unmount a filesystem
+285. df -h - Show disk usage in human-readable format
+
+19. Security & Permissions
+
+286. chmod - Change file permissions
+287. chown - Change file owner
+288. chgrp - Change file group
+289. umask - Set default file permissions
+290. passwd - Change user password
+291. sudo - Execute commands as root
+292. su - Switch user
+293. visudo - Edit sudoers file
+294. getfacl - Get file ACL permissions
+295. setfacl - Set file ACL permissions
+296. lsattr - List file attributes
+297. chattr - Change file attributes
+298. gpg - Encrypt and sign files
+299. openssl - Encrypt, decrypt, and manage certificates
+300. ssh-keygen - Generate SSH keys
+301. ssh-copy-id - Copy SSH keys to a remote server
+302. fail2ban-client - Manage fail2ban security tool
+303. ufw enable - Enable UFW firewall
+304. ufw status - Show UFW firewall rules
+305. iptables - Manage firewall rules
+306. firewalld - Manage firewall in CentOS/RHEL
+307. apparmor_status - Check AppArmor status
+308. selinuxenabled - Check if SELinux is enabled
+309. sestatus - Display SELinux status
+
+20. Automation & Scheduling
+
+310. cron - Job scheduler (background tasks)
+311. crontab -e - Edit user crontab
+312. crontab -l - List current cron jobs
+313. crontab -r - Remove all cron jobs
+314. systemctl enable cron - Enable cron service
+315. anacron - Alternative to cron (for laptops)
+316. at - Schedule a one-time command
+317. atq - Show pending jobs in at queue
+318. atrm - Remove a job from at queue
+319. batch - Run commands when system load is low
+320. nohup command & - Run command immune to hangups
+321. disown - Remove background job from shell
+322. watch - Execute a command periodically
+
+21. Bash Scripting & Environment Variables
+
+323. echo $PATH - Show system PATH variable
+324. export VAR=value - Set an environment variable
+325. unset VAR - Remove an environment variable
+326. alias ll='ls -lah' - Create a command alias
+327. unalias ll - Remove an alias
+328. source script.sh - Run a script in the current shell
+329. ./script.sh - Run a script
+330. bash script.sh - Run a script using Bash
+331. chmod +x script.sh - Make a script executable
+332. shebang (#!) - Define the interpreter for a script
+
+22. Services & Systemd: 
+
+333. systemctl status service - Show service status
+334. systemctl start service - Start a service
+335. systemctl stop service - Stop a service
+336. systemctl restart service - Restart a service
+337. systemctl enable service - Enable service on boot
+338. systemctl disable service - Disable service on boot
+339. systemctl list-units --type=service - List active services
+340. journalctl -xe - View system logs
+341. systemctl mask service - Prevent a service from starting
+342. systemctl unmask service - Re-enable a masked service
+
+23. Containers & Virtualization
+
+343. docker ps - List running Docker containers
+344. docker images - List available Docker images
+345. docker run image - Run a new Docker container
+346. docker stop container - Stop a running container
+347. docker rm container - Remove a container
+348. docker rmi image - Remove a Docker image
+349. docker-compose up - Start services from a compose file
+350. docker-compose down - Stop services from a compose file
+351. vagrant up - Start a virtual machine with Vagrant
+352. vagrant halt - Stop a virtual machine
+353. vagrant destroy - Remove a virtual machine
+354. virt-manager - GUI for managing virtual machines
+
+24. Log Management
+
+355. journalctl - Show system logs
+356. tail -f /var/log/syslog - Monitor system log
+357. tail -f /var/log/auth.log - Monitor authentication log
+358. tail -f /var/log/dmesg - Monitor kernel logs
+359. dmesg - Display kernel ring buffer logs
+360. cat /var/log/messages - Show system messages
+361. logrotate - Manage log rotation
+362. rsyslog - Advanced log management
+363. last - Show last logins
+
+25. Disk Partitioning & Filesystems
+
+364. fdisk - Partition a disk
+365. parted - Advanced partitioning tool
+366. mkfs.ext4 /dev/sdb1 - Format a partition as ext4
+367. fsck - Check and repair filesystem
+368. mount - Mount a filesystem
+369. umount - Unmount a filesystem
+370. blkid - Display filesystem UUIDs
+371. lsblk - List information about block devices
+372. tune2fs - Modify filesystem parameters
+373. e2fsck - Check ext2/ext3/ext4 filesystems
+
+26. Backup & Recovery
+
+374. rsync -av /source /destination - Sync files efficiently
+375. tar -czf backup.tar.gz /path - Create a compressed backup
+376. tar -xzf backup.tar.gz - Extract a backup
+377. dd if=/dev/sda of=/dev/sdb bs=4M - Clone a disk
+378. rsnapshot - Incremental backup tool
+379. timeshift - Backup and restore Linux system
+380. borg - Deduplicating backup tool
+381. duplicity - Encrypted backup tool
+
+27. Performance Monitoring
+
+382. top - Show real-time process usage
+383. htop - Interactive process monitoring
+384. iostat - CPU and disk I/O statistics
+385. vmstat - System performance statistics
+386. free - Show memory usage
+387. mpstat - CPU usage statistics
+388. sar - Collect system performance data
+389. nmon - System performance monitor
+390. glances - Real-time system monitoring tool
+
+28. Networking (Advanced)
+
+391. iftop - Show bandwidth usage
+392. iperf - Network performance testing
+393. tcptrack - Show real-time TCP connections
+394. tcpdump - Capture network packets
+395. tshark - Command-line packet analyzer
+396. mtr - Continuous traceroute
+397. socat - Bidirectional data transfer
+398. netcat (nc) - Network debugging tool
+399. iptables - Manage firewall rules
+400. firewalld - Firewall management tool
+
+29. Cloud & Infrastructure Management
+
+401. aws configure - Configure AWS CLI
+402. aws s3 ls - List S3 buckets
+403. aws ec2 describe-instances - Show EC2 instances
+404. terraform init - Initialize Terraform project
+405. terraform apply - Apply Terraform configuration
+406. terraform destroy - Destroy Terraform resources
+407. ansible-playbook playbook.yml - Run an Ansible playbook
+408. kubectl get pods - List Kubernetes pods
+409. kubectl apply -f config.yaml - Apply Kubernetes config
+410. helm install chart - Install Helm chart
+
+30. Miscellaneous Utilities
+
+411. uname -r - Show Linux kernel version
+412. hostname - Show or set system hostname
+413. man command - Show command manual
+414. whatis command - Show a brief description of a command
+415. alias ll='ls -lah' - Create command alias
+416. history - Show command history
+417. bc - Command-line calculator
+418. yes - Repeatedly output a string
+419. watch command - Run a command periodically
+420. uptime - Show system uptime
+
+31. File Transfer & Synchronization
+
+421. curl -O URL - Download a file from a URL
+422. wget URL - Download a file from the web
+423. rsync -av source/ destination/ - Sync directories
+424. scp file user@server:/path - Securely copy a file
+425. sftp user@server - Secure file transfer
+426. nc -l -p 1234 > file - Receive a file over netcat
+427. nc server 1234 < file - Send a file over netcat
+428. lftp - FTP client for large file transfers
+32. Terminal Multiplexing
+
+429. screen - Start a screen session
+430. screen -ls - List active screen sessions
+431. screen -r - Resume a screen session
+432. tmux - Start a tmux session
+433. tmux list-sessions - Show active tmux sessions
+434. tmux attach-session -t 0 - Reattach to a session
+435. tmux new -s session_name - Create a named session
+33. Text Editors (CLI-Based)
+
+436. nano file - Open file in Nano editor
+437. vim file - Open file in Vim editor
+438. emacs file - Open file in Emacs editor
+439. sed -i 's/old/new/g' file - Edit file inline
+440. awk '{print $1}' file - Print first column from file
+441. cat file | less - View file with pagination
+
+34. System Recovery & Repair
+
+442. fsck /dev/sda1 - Check and repair filesystem
+443. e2fsck -f /dev/sda1 - Force a filesystem check
+444. mount -o remount,rw / - Remount root filesystem as read-write
+445. rescue mode - Boot into system recovery mode
+446. chroot /mnt/sysimage - Change root to another system
+447. grub-install /dev/sda - Reinstall GRUB bootloader
+
+35. Special Purpose Commands
+
+448. yes "text" | command - Feed input automatically
+449. nohup command & - Run command immune to hangups
+450. disown - Remove a process from shell control
+451. eval command - Evaluate and execute a command
+452. exec command - Replace current shell with command
+453. timeout 30s command - Run a command with a timeout
+
+36. Fun & Easter Eggs
+
+454. cowsay "Hello, Linux!" - ASCII cow speaks text
+455. fortune - Show a random quote
+456. sl - Watch a train animation (fun command)
+457. figlet "Linux" - Create ASCII text art
+458. cmatrix - Show Matrix-like screen effect
+459. aafire - Show ASCII fire animation
+460. rev - Reverse input text
+461. yes "I love Linux" - Repeatedly print text
+462. toilet -f bigascii12 "Linux" - ASCII banner generator
+
+37. Miscellaneous Commands
+
+463. factor 100 - Find factors of a number
+464. base64 file.txt - Encode a file in Base64
+465. base64 -d file.txt - Decode Base64 text
+466. od -tx1 file - View binary file in hex
+467. hexdump -C file - Show file in hexadecimal
+468. strings binaryfile - Extract readable text from binaries
+469. stat file - Show detailed file information
+470. tty - Show current terminal device
+471. touch file - Create an empty file
+472. truncate -s 0 file - Empty a file
+473. mktemp - Create a temporary file
+474. seq 1 10 - Print sequence from 1 to 10
+475. shuf -n 5 file.txt - Pick 5 random lines from file
+476. sleep 5 - Pause execution for 5 seconds
+477. beep - Generate a beep sound (if enabled)
+478. tput setaf 2 - Change text color in terminal
+479. bc - Basic calculator
+480. units - Convert between units
+481. ipcalc 192.168.1.1/24 - Show subnet details
+482. banner "Welcome" - Display ASCII banner text
+483. espeak "Hello" - Convert text to speech
+484. watch -n 1 date - Update command output every second
+485. tee output.txt - Save output to file while displaying
+486. diff file1 file2 - Compare two files line by line
+487. cmp file1 file2 - Compare two files byte by byte
+488. time command - Measure execution time of command
+489. type command - Show command type (alias, function, binary)
+490. which command - Show the path of a command
+491. locate file - Find files quickly using the locate database
+492. updatedb - Update locate command’s file database
+493. apropos keyword - Search man pages for a keyword
+494. whatis command - Briefly describe a command
+495. alias ll='ls -lah' - Define an alias for a command
+496. unalias ll - Remove an alias
+497. eval command - Execute command in the current shell
+498. exec command - Replace shell process with a command
+499. reset - Reset terminal settings
+500. exit - Exit the current shell
+
+
